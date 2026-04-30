@@ -6,17 +6,17 @@ A simple, selfhostable website that lists content on your Jellyfin Server and al
 
 ## Use case
 
-I had the following problem the other day: I am sharing my selfhosted Jellyfin server with my family and friends by exposing it to the internet. If they wanted to watch something on it, they would have to message me every time to turn it on. 
+I had the following problem the other day: I am sharing my selfhosted Jellyfin server with my family and friends by exposing it to the internet. If they wanted to watch something on it, they would have to message me every time to turn the server on.
 
-That **sucked**. So I came up with this webservice. Once it runs, it hosts a website which contains your entire Jellyfin library by talking directly to the Jellyfin API. It updates automatically by using a cronjob. Above the List, you will have the option to send a Lake on Lan Packet to the server if it is turned off.
+That **sucked**. So I came up with this webpackage. Once it runs, it hosts a website which lists your entire Jellyfin library by talking directly to the Jellyfin API and saves it to a json file. It updates automatically by using a cronjob. Additionally, you will have the option to send a Lake on Lan packet to the server if it is turned off.
 
-With JellyList, every user can see which movies and shows are available, even if the server is turned off, and power it on to watch it.
+With JellyList, every user can see which movies and shows are available, even if the server is turned off, and power it on to get watching.
 
 ---
 
 ## 📥Prequisiteries
 
-For this to work, you will need to set up a few things. First up, you will need to run a [GPTWOL](https://github.com/Misterbabou/gptwol) server in the same network as your Jellyfin Server. JellyList sends a get request to its backend to send the Wake on Lan Package. I recommend to run it in another VM or container. 
+For JellyList to work, you will need to set up a few things. First up, you will need to run a [GPTWOL](https://github.com/Misterbabou/gptwol) server in the same network as your Jellyfin Server. JellyList sends a get request to its backend to send the Wake on Lan Package. I recommend to run it in another VM or container. 
 
 I also highly recommend to run JellyList in a VM or a container, as you will be exposing it to the open web. When GPTWOL is set up, try entering its IP into your web browser to make sure its working!
 
