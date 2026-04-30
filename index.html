@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jellyfin Library</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" type="image/x-icon" href="media/fav.png">
+</head>
+<body>
+
+<h1>Jellyfin Library</h1>
+
+<div class="meta" id="updated"></div>
+
+<input type="text" id="search" placeholder="Search...">
+
+<button onclick="wakeServer()">Start Server</button>
+
+<script>
+function wakeServer() {
+    fetch('/api/wake', {
+        method: 'POST'
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data);
+        alert("Wake On Lan Mode: L4 Packet // Wake On Lan Magic Packet Sent");
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Error");
+    });
+}
+</script>
+
+<h2>Movies</h2>
+<ul id="movies"></ul>
+
+<h2>Shows</h2>
+<ul id="shows"></ul>
+
+<script>
+let allMovies = [];
+let allShows = [];
+
+function render(list, elementId) {
+    const ul = document.getElementById(elementId);
+    ul.innerHTML = "";
+
+    list.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.title} (${item.year || "?"})`;
+        ul.appendChild(li);
+    });
+}
+
+function filter() {
+    const q = document.getElementById("search").value.toLowerCase();
+
+    render(allMovies.filter(m => m.title.toLowerCase().includes(q)), "movies");
+    render(allShows.filter(s => s.title.toLowerCase().includes(q)), "shows");
+}
+
+fetch("/json/media.json")
+    .then(res => res.json())
+    .then(data => {
+        allMovies = data.movies;
+        allShows = data.shows;
+
+        render(allMovies, "movies");
+        render(allShows, "shows");
+
+        document.getElementById("updated").textContent =
+            "Last updated: " + new Date(data.last_updated).toLocaleString();
+    });
+
+document.getElementById("search").addEventListener("input", filter);
+</script>
+
+</body>
+</html>
