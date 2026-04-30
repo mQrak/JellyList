@@ -58,4 +58,6 @@ You should now be able to start your server by entering the local IP of your Jel
 
 ## 🔄Updating
 
-Of course we want the list on the website to be synced with our server. This is done with`sync.py`.  This file will not be exposed to the public web. For it to be able to parse your Jellyfin library, you will need to create end enter a Jellyfin API key. This can be done in the Jellyfin Webend. You´ll also have to add the IP adress / domain where its gonna fetch its data from. The script will save the information in a .json file at /var/www/html/json, where the website will 
+Of course we want the list on the website to be synced with our server. This is done with`sync.py`.  This file will not be exposed to the public web. For it to be able to parse your Jellyfin library, you will need to create end enter a Jellyfin API key. This can be done in the Jellyfin Webend. You´ll also have to add the IP adress / domain where its gonna fetch its data from. The script will save the information in a .json file at /var/www/html/json, where JellyList will take its movies and shows from. 
+
+For making it update automatically, just create a cronjob that executes sync.py in your desired interval.
