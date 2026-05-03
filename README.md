@@ -24,7 +24,7 @@ I also highly recommend to run JellyList in a VM or a container, as you will be 
 
 ## 💻Installation
 
-To get started, you have download and run which will NGINX (if its not already installed) and copy the htm files to its corresponding location. 
+To get started, you have download and run the installation script which will download NGINX (if its not already installed) and copy the html files to its corresponding location. 
 
 ```
 curl -O https://raw.githubusercontent.com/mQrak/JellyList/refs/heads/main/install.sh
